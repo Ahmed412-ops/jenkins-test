@@ -35,7 +35,7 @@ pipeline {
                     echo New-WebAppPool -Name \$siteName -Force >> deploy.ps1
                     echo Set-ItemProperty "IIS:\\AppPools\\\$siteName" -Name "managedRuntimeVersion" -Value "" >> deploy.ps1
                     echo >> deploy.ps1
-echo New-Website -Name \$siteName -Port \$port -PhysicalPath \$destinationPath\publish -ApplicationPool \$siteName -Force >> deploy.ps1                    echo "----- Adding IIS Site -----" >> deploy.ps1
+echo New-Website -Name \$siteName -Port \$port -PhysicalPath \$destinationPath\\publish -ApplicationPool \$siteName -Force >> deploy.ps1                    echo "----- Adding IIS Site -----" >> deploy.ps1
                     
                     echo >> deploy.ps1
                     echo "----- Setting Permissions -----" >> deploy.ps1
