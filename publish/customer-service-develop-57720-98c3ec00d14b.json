@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "customer-service-develop-57720",
+  "private_key_id": "98c3ec00d14bfdc74a8654db0b0a6ff01f678fad",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDuebCkG9HRPvSO\nmnJkIPJAUn6jVW54e+ARpCJAwHODN+h8u13AMyw8QPewBceSN2G5tt/v91hocNKk\nk/2SXHpnZxPFGH0efcMN7ZinyIR14WyxM/IRURYKEtv4ZejWbqQnGZzZnF1egni+\nG7s8Qij3RmleuS1uEFlf+hsrwJWlwH6gcdQvVnYBqVoO7w9oobwYxNL4VGtH9zHf\nniQLZfPOQB1HmN6Y+Up2gU0uWOr5KP7t/A5EvcRVV6HnH4WeS178UazJ9L6IFzHq\n7fr31zhBYMjigJyrGkJ37XF5vRV5R8YbovHIjgGoa0FsDpRVEeEK0tVH0L5co0h+\nHqAttMpdAgMBAAECggEAIQnT6pB+G46sw/rqwSt9VGL5b3h9Aw0qaFdEdZMUDchX\nmbw9i0yrordfeU/7q6qni9qloLG0WlfTHwDvvvC39o5lw0cWwnwq40mY/hm+HDS8\nYbpwHW0N8BxXxEyeGuMeM9qNC+rpVpgd0Ty3TmxeD4/+NiTSge6a6zyTuhaGxP0n\nNryLWcQH622niibi1VudKM+JhPYQbcu7A6y53cqCG9Ke+RxLcoGPuM+8G5VZF1Ci\ntoSZKO6fUKnVnKXzdAsXj9rpNDdciFn8oPC5WS5nYPsqmXyComKxOGbgOUUr9Nsm\nLwxmtb1p9e1TW12Cn3YbmjNBc/7aAIvg+HhG6tPDQwKBgQD5U03ULt+9vUFoYOf/\nh6F5vJ9d+bqJ6OZmT71vIocDxcrXd5Y571cDCz/cs28ifvPTTTV3LY1KsL6nQ0si\nmHnK5xMc9cmAkLW2kOJhjEqySaJV90rlxQ/8Uvj4/FvpfQjUpYdfweFF5Q0hDKRf\nS8zACg8I8K7DFYzN7rQBG+YN4wKBgQD03AcOE6A32jv1zUGNw7GCTygj7s8v1DaD\nCDV5lglN1GrC9x+2BcMXi/pDLN6gfeF8WNrJhGVu6BQ6OJYy8yNQW/Hwb8qfoQ9g\nn+Ox1wlmI25xNWq/Htg5Zbsskc9hlX+4klQxjTSdjmifCPxUgMik/bIPGZZ07fcu\nb9vfDlk6vwKBgQC6OAsYYM5CFDnnMQH2rCHiIAzUDvLRkH+NiR9PA3XeTnv7RNmS\nef3+Sweu2uI13KZWewNk+UPftnUfzrYup73H26E97yJKgUsHid1byIH9+dti4+ow\nBWi0KHDG3w3zLa1Lzjp3PgL4xmRw+9VFTAMoqBqkrceJ8+2P3irZ7TF9ywKBgC2I\nePtiJOod+AZ2e9k76dd8ls9PylFvmg91yFPq1aIWfR/ySoBTw/qt+gTh5CheID86\nWr0clKwyFgjZmvywgAGih3QZpclXbv+d2/6nKUVIE3KT51zRBI5v34WjO7g+z7hn\n5aYtRvqBj+z7A8lHBYjA8IqkTHlEAzIsdOuexHMLAoGAMdEOWjCcTbAKbSGFnZXe\nb0I4ZCdd8nQ9+XP+msKWWEhRH4SVc0dsYPnZ7KxxLcIPjl4GLCGQuAmGegcPgQcy\nXqxwxXRKxlQyN21PouT5cELcYZLmmbfFLdRFnPictknUtUTRUBKOaVLsMf4LZTik\nwSPbobSYOGNGyfE+RBtvaBw=\n-----END PRIVATE KEY-----\n",
+  "client_email": "nasser-flutter@customer-service-develop-57720.iam.gserviceaccount.com",
+  "client_id": "118198272694405347270",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/nasser-flutter%40customer-service-develop-57720.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
