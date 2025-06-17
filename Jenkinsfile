@@ -1,51 +1,66 @@
 pipeline {
     agent any
-
-    environment {
-        DOCKER_IMAGE = 'ahmed416/newtest' // Replace with your Docker Hub username and image name
-        IMAGE_TAG = 'v1.0'
-    }
-
+    
     stages {
         stage('Checkout') {
             steps {
-                checkout scm
+                checkout scm  // Pulls code from your SCM (Git, etc.)
             }
         }
-
-        stage('show docker run') {
+        
+        stage('Deploy to IIS') {
             steps {
-                powershell 'docker images'
-                powershell 'docker ps'
-                
+                script {
+                    // Define variables
+                    def sourcePath = "${WORKSPACE}"  // Jenkins workspace
+                    //def appName = "back-test2"
+                    def siteName = "back-test2"
+                    def port = 8000
+                    def destinationPath = "C:\\inetpub\\wwwroot\\"
+                    
+                    // Execute PowerShell as Admin
+                    bat """
+                    @echo off
+                    :: Create a PowerShell script to run elevated
+                    echo Import-Module WebAdministration > deploy.ps1
+                    echo \$sourcePath = '${sourcePath}' >> deploy.ps1
+                    echo \$destinationPath = '${destinationPath}' >> deploy.ps1
+                    echo \$siteName = '${siteName}' >> deploy.ps1
+                    echo \$port = ${port} >> deploy.ps1
+                    echo >> deploy.ps1
+                    echo "----- Copying files to IIS -----" >> deploy.ps1
+                    echo Robocopy \$sourcePath \$destinationPath /MIR /NP /NDL /NJH /NJS >> deploy.ps1
+                    echo >> deploy.ps1
+                    echo "----- Creating App Pool -----" >> deploy.ps1
+                    echo New-WebAppPool -Name \$siteName -Force >> deploy.ps1
+                    echo Set-ItemProperty "IIS:\\AppPools\\\$siteName" -Name "managedRuntimeVersion" -Value "" >> deploy.ps1
+                    echo >> deploy.ps1
+                    echo "----- Adding IIS Site -----" >> deploy.ps1
+                    echo New-Website -Name \$siteName -Port \$port -PhysicalPath \$destinationPath -ApplicationPool \$siteName -Force >> deploy.ps1
+                    echo >> deploy.ps1
+                    echo "----- Setting Permissions -----" >> deploy.ps1
+                    echo \$acl = Get-Acl \$destinationPath >> deploy.ps1
+                    echo \$rule = New-Object System.Security.AccessControl.FileSystemAccessRule("IIS_IUSRS", "FullControl", "ContainerInherit,ObjectInherit", "None", "Allow") >> deploy.ps1
+                    echo \$acl.AddAccessRule(\$rule) >> deploy.ps1
+                    echo Set-Acl -Path \$destinationPath -AclObject \$acl >> deploy.ps1
+                    echo >> deploy.ps1
+                    echo "----- Starting Site -----" >> deploy.ps1
+                    echo Start-Website -Name \$siteName >> deploy.ps1
+                    echo >> deploy.ps1
+                    echo "----- Verification -----" >> deploy.ps1
+                    echo Get-Website -Name \$siteName ^| Select-Object Name, State, PhysicalPath, Bindings >> deploy.ps1
+                    
+                    :: Execute the PowerShell script elevated
+                    powershell -Command "Start-Process powershell -Verb RunAs -ArgumentList '-NoProfile -ExecutionPolicy Bypass -File \"%CD%\\deploy.ps1\"' -Wait"
+                    """
+                }
             }
         }
-
-        // stage('Push to Docker Hub') {
-        //     steps {
-        //         withCredentials([usernamePassword(credentialsId: 'docker-hub', usernameVariable: 'DOCKERHUB_USER', passwordVariable: 'DOCKERHUB_PASS')]) {
-        //             sh '''
-        //             echo $DOCKERHUB_PASS | docker login -u $DOCKERHUB_USER --password-stdin
-        //             docker push $DOCKER_IMAGE:$IMAGE_TAG
-        //             '''
-        //         }
-        //     }
-        // }
-
-        // stage('Run Docker Container') {
-        //     steps {
-        //         sh '''
-        //         docker stop newtest || true
-        //         docker rm newtest || true
-        //         docker run -d -p 4000:80 --name newtest $DOCKER_IMAGE:$IMAGE_TAG
-        //         '''
-        //     }
-        // }
     }
-
-    // post {
-    //     always {
-    //         cleanWs()
-    //     }
-    // }
+    
+    post {
+        always {
+            cleanWs()  // Clean workspace after build
+        }
+    }
 }
