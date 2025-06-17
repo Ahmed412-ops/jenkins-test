@@ -16,6 +16,8 @@ pipeline {
         stage('show docker run') {
             steps {
                 powershell 'docker images'
+                powershell 'docker ps'
+                
             }
         }
 
