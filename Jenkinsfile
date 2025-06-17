@@ -14,8 +14,8 @@ pipeline {
                     // Define variables
                     def sourcePath = "${WORKSPACE}"  // Jenkins workspace
                     //def appName = "back-test2"
-                    def siteName = "back-test2"
-                    def port = 8000
+                    def siteName = "back-test3"
+                    def port = 8001
                     def destinationPath = "C:\\inetpub\\wwwroot\\"
                     
                     // Execute PowerShell as Admin
@@ -35,8 +35,8 @@ pipeline {
                     echo New-WebAppPool -Name \$siteName -Force >> deploy.ps1
                     echo Set-ItemProperty "IIS:\\AppPools\\\$siteName" -Name "managedRuntimeVersion" -Value "" >> deploy.ps1
                     echo >> deploy.ps1
-                    echo "----- Adding IIS Site -----" >> deploy.ps1
-                    echo New-Website -Name \$siteName -Port \$port -PhysicalPath \$destinationPath -ApplicationPool \$siteName -Force >> deploy.ps1
+echo New-Website -Name \$siteName -Port \$port -PhysicalPath \$destinationPath\publish -ApplicationPool \$siteName -Force >> deploy.ps1                    echo "----- Adding IIS Site -----" >> deploy.ps1
+                    
                     echo >> deploy.ps1
                     echo "----- Setting Permissions -----" >> deploy.ps1
                     echo \$acl = Get-Acl \$destinationPath >> deploy.ps1
