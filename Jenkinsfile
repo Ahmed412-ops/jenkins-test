@@ -11,10 +11,10 @@ pipeline {
         stage('Deploy to IIS') {
             steps {
                 script {
-                    def sourcePath = "${WORKSPACE}"
+                    def sourcePath = "${WORKSPACE}\\publish"  // Pointing to the publish folder in repo
                     def siteName = "back-test3"
                     def port = 8001
-                    def destinationPath = "C:\\inetpub\\wwwroot\\"
+                    def destinationPath = "C:\\inetpub\\wwwroot"
                     
                     bat """
                     @echo off
