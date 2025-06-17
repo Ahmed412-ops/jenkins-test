@@ -16,7 +16,7 @@ pipeline {
                     //def appName = "back-test2"
                     def siteName = "back-test3"
                     def port = 8001
-                    def destinationPath = "C:\\inetpub\\wwwroot\\"
+                    def destinationPath = "C:\\inetpub\\wwwroot\\publish\\"
                     
                     // Execute PowerShell as Admin
                     bat """
@@ -35,7 +35,7 @@ pipeline {
                     echo New-WebAppPool -Name \$siteName -Force >> deploy.ps1
                     echo Set-ItemProperty "IIS:\\AppPools\\\$siteName" -Name "managedRuntimeVersion" -Value "" >> deploy.ps1
                     echo >> deploy.ps1
-echo New-Website -Name \$siteName -Port \$port -PhysicalPath \$destinationPath\\publish -ApplicationPool \$siteName -Force >> deploy.ps1                    echo "----- Adding IIS Site -----" >> deploy.ps1
+echo New-Website -Name \$siteName -Port \$port -PhysicalPath \$destinationPath -ApplicationPool \$siteName -Force >> deploy.ps1                    echo "----- Adding IIS Site -----" >> deploy.ps1
                     
                     echo >> deploy.ps1
                     echo "----- Setting Permissions -----" >> deploy.ps1
