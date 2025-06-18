@@ -1,0 +1,107 @@
+{
+  "auth": {
+    "signin": "Sign in",
+    "logout": "Logout",
+    "password": "Password",
+    "username": "Username",
+    "resetPassword": "Reset Password",
+    "forgetPassword": "Forget Password ?",
+    "confirmPassword": "Confirm Password"
+  },
+  "pages": {
+    "dashboard": "Dashboard",
+    "users": "Users",
+    "projects": "Projects",
+    "issues": "Issues",
+    "notifications": "Notifications",
+    "reports": "Reports",
+    "settings": "Settings",
+    "roles": "Roles"
+  },
+  "issues": {
+    "header": "Projects Issues",
+    "issues": "Issues",
+    "logo": "Project Logo",
+    "name": "Project Name",
+    "type": "Type",
+    "description": "Description",
+    "dialog": {
+      "header": "Update Issue Status",
+      "labels": {
+        "status": "Issue Status",
+        "response": "Response"
+      },
+      "buttons": {
+        "update": "Update",
+        "cancel": "Cancel"
+      }
+    },
+    "preview": {
+      "header": "Preview Issues",
+      "type":"Issue Type",
+      "priority":"Priority",
+      "images":"Issue Images",
+      "video":"Issue Video",
+      "noVideo":"Video wasn't found for this issue .",
+      "noImages":"Images weren't found for this issue ."
+    }
+  },
+  "projects" :{
+    "header": "Our Projects",
+    "logo": "Project Logo",
+    "name": "Project Name",
+    "description":"Description",
+    "dialog":{
+      "header": "Update Project",
+      "labels": {
+        "name":"Project Name",
+        "logo":"Project Logo",
+        "description":"Description"
+      }
+    },
+    "add":{
+      "header":"Add Project",
+      "logo":"Project Logo"
+    }
+  },
+  "shared": {
+    "status": "Status",
+    "actions": "Actions",
+    "filters": {
+      "projectName": "Project Name",
+      "type": {
+        "filterLabel": "Type",
+        "labels": {
+          "problem": "Problem",
+          "improvement": "Improvement"
+        }
+      },
+      "priority": {
+        "filterLabel": "Priority",
+        "labels": {
+          "urgentAndImportant": "Urgent And Important",
+          "importantNotUrgent": "Important Not Urgent",
+          "canBeDeferred": "Can Be Deferred"
+        }
+      },
+      "status": {
+        "filterLabel": "Status",
+        "labels": {
+          "pending": "Pending",
+          "inProgress": "In Progress",
+          "resolved": "Resolved",
+          "rejected": "Rejected"
+        }
+      },
+      "fromDate": "From Date",
+      "toDate": "To Date",
+      "ordering": {
+        "filterLabel": "Ordering" ,
+        "labels":{
+          "ascending":"Ascending",
+          "descending":"Descending"
+        }
+    }
+    }
+  }
+}

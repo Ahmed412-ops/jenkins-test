@@ -1,0 +1,107 @@
+{
+  "auth": {
+    "signin": "تسجيل الدخول",
+    "logout": "تسجيل الخروج",
+    "password": "كلمة المرور",
+    "username": "اسم المستخدم",
+    "resetPassword": "إعادة تعيين كلمة المرور",
+    "forgetPassword": "هل نسيت كلمة المرور؟",
+    "confirmPassword": "تأكيد كلمة المرور"
+  },
+  "pages": {
+    "dashboard": "لوحة التحكم",
+    "users": "المستخدمين",
+    "projects": "المشاريع",
+    "issues": "المشكلات",
+    "notifications": "التنبيهات",
+    "reports": "التقارير",
+    "settings": "الإعدادات",
+    "roles": "الأدوار"
+  },
+  "issues": {
+    "header": "مشاكل المشاريع",
+    "issues": "المشكلات",
+    "logo": "صوره المشروع",
+    "name": "اسم المشروع",
+    "type": "النوع",
+    "description": "الوصف",
+    "dialog":{
+      "header": "تحديث حاله المشكله",
+      "labels":{
+        "status":"حاله المشكله",
+        "response":"الرد"
+      },
+      "buttons":{
+        "update":"تحديث",
+        "cancel":"إلغاء"
+      }
+    },
+    "preview":{
+      "header":"معاينة المشكله",
+      "priority":"الأولويه",
+      "type":"نوع المشكله",
+      "images":"صور المشكله",
+      "video":"مقطع فيديو",
+      "noVideo":"لا يوجد مقطع لهذه المشكله .",
+      "noImages":"لا يوجد صور لهذه المشكله ."
+    }
+  },
+  "projects" :{
+    "header": "مشاريعنا",
+    "logo": "صوره المشروع",
+    "name": "اسم المشروع",
+    "description": "الوصف",
+    "dialog":{
+      "header": "تحديث مشروع",
+      "labels": {
+        "name":"اسم المشروع",
+        "logo":"شعار المشروع",
+        "description":"الوصف"
+      }
+    },
+    "add":{
+      "header":"إضافه مشروع",
+      "logo":"صوره المشروع"
+    }
+  },
+  "shared":{
+    "status": "الحاله",
+    "actions":"الإجراءات",
+    "filters":{
+      "projectName":"اسم المشروع",
+      "type":{
+        "filterLabel": "النوع",
+        "labels": {
+          "problem": "مشكلة",
+          "improvement": "تحسين"
+        }
+      },
+      "priority":{
+        "filterLabel": "الأولويه",
+        "labels": {
+          "urgentAndImportant": "عاجل و مهم",
+          "importantNotUrgent": "مهم و ليس عاجل",
+          "canBeDeferred": "يمكن تأجيلها"
+        }
+      },
+      "status":{
+        "filterLabel": "الحاله",
+        "labels": {
+          "pending": "قيد الإنتظار",
+          "inProgress": "في تقدم",
+          "resolved": "محلول",
+          "rejected": "مرفوض"
+        }
+      },
+      "fromDate":"من تاريخ",
+      "toDate":"الي تاريخ",
+      "ordering":{
+        "filterLabel": "الترتيب" ,
+        "labels":{
+          "ascending":"تصاعدي",
+          "descending":"تنازلي"
+        }
+    }
+    }
+  }
+}
