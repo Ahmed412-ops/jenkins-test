@@ -15,8 +15,8 @@ pipeline {
                     def sourcePath_front = "${WORKSPACE}\\qareep"  // Frontend source
                     def siteName_back = "back-test4"
                     def siteName_front = "front-test4"
-                    def port_back = 8004
-                    def port_front = 8005
+                    def port_back = 8006
+                    def port_front = 8007
                     def destinationPath = "C:\\inetpub\\wwwroot"
                     def publishPath_back = "${destinationPath}\\publish"
                     def publishPath_front = "${destinationPath}\\qareep"
