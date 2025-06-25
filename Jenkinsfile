@@ -16,7 +16,7 @@ pipeline {
                     def siteName_back = "back-test4"
                     def siteName_front = "front-test4"
                     def port_back = 8011
-                    def port_front = 8025
+                    def port_front = 8020
                     def destinationPath = "C:\\inetpub\\wwwroot"
                     def publishPath_back = "${destinationPath}\\publish"
                     def publishPath_front = "${destinationPath}\\qareep"
