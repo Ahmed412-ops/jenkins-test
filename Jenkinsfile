@@ -5,7 +5,7 @@ pipeline {
         // Define any variables you need here
         PORT_BACK = '8011'
         PORT_FRONT = '8021'
-        clean_folder = 'false'
+        clean_folder = 'true'
 
     }
 
