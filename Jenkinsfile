@@ -19,11 +19,7 @@ pipeline {
         stage('Deploy Backend') {
             steps {
                     bat """
-                        powershell -NoProfile -ExecutionPolicy Bypass -Command ^
-                        "& { ^
-                            \$cleanFlag = [System.Boolean]::Parse('${clean_folder}'); ^
-                            .\\deploy_back.ps1 -SourcePath '${WORKSPACE}\\publish' -SiteName 'back-test4' -Port ${PORT_BACK} -DestinationPath 'C:\\inetpub\\wwwroot' -CleanPublishFolder:\$cleanFlag ^
-                        }"
+                        powershell -NoProfile -ExecutionPolicy Bypass -Command "[System.Boolean]::Parse('${clean_folder}') | ForEach-Object { .\\deploy_back.ps1 -SourcePath '${WORKSPACE}\\publish' -SiteName 'back-test4' -Port ${PORT_BACK} -DestinationPath 'C:\\inetpub\\wwwroot' -CleanPublishFolder:\$_ }"
                      """
             }
 
