@@ -18,8 +18,10 @@ pipeline {
 
         stage('Deploy Backend') {
             steps {
-                def cleanFlag = clean_folder.toBoolean() ? '$true' : '$false'
-                bat "powershell -NoProfile -ExecutionPolicy Bypass -File deploy_back.ps1 -SourcePath \"${WORKSPACE}\\publish\" -SiteName \"back-test4\" -Port ${PORT_BACK} -DestinationPath \"C:\\inetpub\\wwwroot\" -CleanPublishFolder:${clean_folder}"
+                script {
+                    
+                    def cleanFlag = clean_folder.toBoolean() ? '$true' : '$false'
+                    bat "powershell -NoProfile -ExecutionPolicy Bypass -File deploy_back.ps1 -SourcePath \"${WORKSPACE}\\publish\" -SiteName \"back-test4\" -Port ${PORT_BACK} -DestinationPath \"C:\\inetpub\\wwwroot\" -CleanPublishFolder:${clean_folder}"
             }
         }
 
