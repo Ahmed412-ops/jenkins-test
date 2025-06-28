@@ -1,47 +1,57 @@
-param(
-    [string]$SourcePath = "C:\Users\Algorithm\AppData\Local\Jenkins\.jenkins\workspace\jenkins-test\publish",
-    [string]$SiteName = "back-test4",
-    [int]$Port = 8011,
-    [string]$DestinationPath = "C:\inetpub\wwwroot"
+param (
+    [string]$SourcePath,
+    [string]$SiteName,
+    [int]$Port,
+    [string]$DestinationPath,
+    [bool]$CleanPublishFolder = $true
 )
+
+$PublishPath = Join-Path $DestinationPath "publish"
+$excludedFolder = Join-Path $PublishPath "wwwroot"
+
+Write-Host "==== Deploying Backend: $SiteName ===="
 
 Import-Module WebAdministration
 
-$PublishPath = Join-Path $DestinationPath "publish"
-
-Write-Host "==== Deploying Backend: $SiteName ====" -ForegroundColor Cyan
-
-# Remove existing folder
-if (Test-Path $PublishPath) {
-    Write-Host "Removing existing folder: $PublishPath"
-    Remove-Item $PublishPath -Recurse -Force
-}
-
-# Remove existing site
+# Stop and remove existing site and app pool
 if (Get-Website -Name $SiteName -ErrorAction SilentlyContinue) {
     Write-Host "Removing existing IIS site: $SiteName"
-    Stop-Website -Name $SiteName
-    Remove-Website -Name $SiteName
+    Stop-Website -Name $SiteName -ErrorAction SilentlyContinue
+    Remove-Website -Name $SiteName -ErrorAction SilentlyContinue
 }
 
-# Remove existing app pool
-if (Get-WebAppPoolState -Name $SiteName -ErrorAction SilentlyContinue) {
+if (Get-WebAppPool -Name $SiteName -ErrorAction SilentlyContinue) {
     Write-Host "Removing existing App Pool: $SiteName"
-    Remove-WebAppPool -Name $SiteName
+    Remove-WebAppPool -Name $SiteName -ErrorAction SilentlyContinue
 }
 
-# Copy files
-Write-Host "Copying files from $SourcePath to $PublishPath"
-robocopy $SourcePath $PublishPath /MIR /NP /NDL /NJH /NJS > $null
+# Delete or preserve existing folder
+if ($CleanPublishFolder) {
+    if (Test-Path $PublishPath) {
+        Write-Host "Deleting existing folder: $PublishPath"
+        Remove-Item $PublishPath -Recurse -Force
+    }
+    New-Item -ItemType Directory -Path $PublishPath | Out-Null
+    Write-Host "Copying files from $SourcePath to $PublishPath (FULL CLEAN)"
+    Robocopy $SourcePath $PublishPath /MIR /NP /NDL /NJH /NJS
+}
+else {
+    if (-not (Test-Path $PublishPath)) {
+        Write-Host "Target folder doesn't exist, creating: $PublishPath"
+        New-Item -ItemType Directory -Path $PublishPath | Out-Null
+    }
+    Write-Host "Copying files from $SourcePath to $PublishPath (SAFE UPDATE, keeping App_Data)"
+    Robocopy $SourcePath $PublishPath /E /XO /XD "$excludedFolder" /NP /NDL /NJH /NJS
+}
 
-# Create app pool
+# Create App Pool
 Write-Host "Creating App Pool: $SiteName"
-New-WebAppPool -Name $SiteName
-Set-ItemProperty "IIS:\AppPools\$SiteName" -Name "managedRuntimeVersion" -Value ""
+New-WebAppPool -Name $SiteName -Force | Out-Null
+Set-ItemProperty "IIS:\\AppPools\\$SiteName" -Name "managedRuntimeVersion" -Value ""
 
-# Create site
+# Create Website
 Write-Host "Creating IIS Site: $SiteName on port $Port"
-New-Website -Name $SiteName -Port $Port -PhysicalPath $PublishPath -ApplicationPool $SiteName
+New-Website -Name $SiteName -Port $Port -PhysicalPath $PublishPath -ApplicationPool $SiteName -Force | Out-Null
 
 # Set permissions
 Write-Host "Setting permissions on $PublishPath"
@@ -51,9 +61,7 @@ $acl.AddAccessRule($rule)
 Set-Acl -Path $PublishPath -AclObject $acl
 
 # Start site
+Write-Host "Starting website: $SiteName"
 Start-Website -Name $SiteName
 
-# Verify
-$site = Get-Website -Name $SiteName
-Write-Host "Backend '$SiteName' deployed at port $Port"
-$site | Select-Object Name, State, PhysicalPath, Bindings
+Write-Host "`n✅ Backend '$SiteName' deployed successfully on port $Port"
