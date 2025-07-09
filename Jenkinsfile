@@ -4,7 +4,7 @@ pipeline {
     environment {
         // Define any variables you need here
         PORT_BACK = '8011'
-        PORT_FRONT = '8022'
+        PORT_FRONT = '8023'
         clean_folder = 'true'
 
     }
