@@ -30,6 +30,11 @@ pipeline {
                 bat "powershell -NoProfile -ExecutionPolicy Bypass -File deploy_front.ps1 -SourcePath \"${WORKSPACE}\\qareep\" -SiteName \"front-test4\" -Port ${PORT_FRONT} -DestinationPath \"C:\\inetpub\\wwwroot\""
             }
         }
+        stage('run hello script'){
+            steps{
+                bat "powershell -NoProfile -ExecutionPolicy Bypass -File hello.ps1"
+            }
+        }
     }
 
     post {
