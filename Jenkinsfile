@@ -32,7 +32,7 @@ pipeline {
         }
         stage('run hello script'){
             steps{
-                bat "powershell -NoProfile -ExecutionPolicy Bypass -File hello.ps1"
+                bat "powershell  -ExecutionPolicy Bypass -File hello.ps1"
             }
         }
     }
